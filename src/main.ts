@@ -8,10 +8,9 @@ let notes:Note[];
 if(notesString == null) notes = [];
 else notes = JSON.parse(notesString);
 
-this.fillTable();
+fillTable();
 
 function fillTable(){
-    let table:HTMLTableElement = document.getElementById("tableNotes") as HTMLTableElement;
     let tablebody:HTMLTableSectionElement = document.getElementById("tableBody") as HTMLTableSectionElement;
 
     while (tablebody.firstChild) {
@@ -29,31 +28,30 @@ function fillTable(){
         cell3.innerHTML = `<button class="btn btn-danger" onclick="removeNote(${note.id})">Delete</button>`;
         cell4.innerHTML = `<button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-info"  onclick="editNote(${note.id})">Edit</button>`;
     });
+    saveNote();
 }
 
 function saveNote(){
     let description:HTMLInputElement = document.getElementById("description") as HTMLInputElement;
     let content:HTMLInputElement = document.getElementById("content") as HTMLInputElement;
-
-    if (description && content){
-        if(description.value.length > 0 && content.value.length > 0){
-            let newNote:Note = {
-                description: description.value.trim(),
-                content: content.value.trim(),
-                id : Date.now()
-            }
-
-            notes.push(newNote);
-            localStorage.setItem("notes",JSON.stringify(notes));
-            fillTable();
-            
+    let saveButton:HTMLButtonElement = document.getElementById("guardar") as HTMLButtonElement;
+    saveButton.onclick = () => {
+        if (description && content && description.value.length > 0 && content.value.length > 0){
+                let newNote:Note = {
+                    description: description.value.trim(),
+                    content: content.value.trim(),
+                    id : Date.now()
+                }
+                notes.push(newNote);
+                localStorage.setItem("notes",JSON.stringify(notes));
+                fillTable();
         }else{
             alert("Description and content are required");
         }
-    }
+    } 
  }
 
- function removeNote(id:Number):void{
+ function removeNote(id:number):void{
     let confirmed:boolean = confirm("Are you sure you want to delete this note?");
     if(confirmed){
         let newNotes = notes.filter((note:Note) => note.id != id);
@@ -63,7 +61,7 @@ function saveNote(){
     }
  }
 
- function editNote(id:Number){
+ function editNote(id:number){
 
     let note:Note|undefined = notes.find(nota =>nota.id == id);
     let description:HTMLInputElement =document.getElementById("description") as HTMLInputElement;
@@ -74,12 +72,15 @@ function saveNote(){
         content.value = note.content;
     }
 
-    let saveButton:HTMLButtonElement = document.getElementById("guardar") as HTMLButtonElement;
-    saveButton.onclick = () => {
+    let editButton:HTMLButtonElement = document.getElementById("guardar") as HTMLButtonElement;
+    editButton.onclick = () => {
         if(note&&description && content&&description.value.trim().length > 0 && content.value.trim().length > 0){
             note.description = description.value.trim();
             note.content = content.value.trim();
             localStorage.setItem("notes",JSON.stringify(notes));
+            fillTable();
+        }else{
+            alert("Description and content are required");
             fillTable();
         }
     }
@@ -104,4 +105,15 @@ document.getElementById("description")?.addEventListener("keypress",(event)=>{
       document.getElementById("guardar")?.click();
     }
  })
+
+ let modal:HTMLElement = document.getElementById("staticBackdrop") as HTMLElement;
+    modal.addEventListener('hidden.bs.modal', function () {
+        let description:HTMLInputElement = document.getElementById("description") as HTMLInputElement;
+        let content:HTMLInputElement = document.getElementById("content") as HTMLInputElement;
+        description.value = "";
+        content.value = "";
+    })
+    
+   
+    
  

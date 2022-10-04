@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PPPMDM</title>
-    <link rel="stylesheet" href="https://juanmirivas8.github.io/PPPMDM/node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="https://juanmirivas8.github.io/PPPMDM/node_modules/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://juanmirivas8.github.io/PPPMDM/main.css">
-    <script src="https://juanmirivas8.github.io/PPPMDM/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 
 </head>
 <body>
@@ -45,15 +45,15 @@
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="staticBackdropLabel">Insertar nueva nota</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button id="salir" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <input id="description" class="form-control" type="text" placeholder="Descripcion" aria-label="default input example">
                 <input id="content" style="margin-top: 5px;" class="form-control" type="text" placeholder="Contenido" aria-label="default input example">
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button id="guardar" type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="saveNote()">Guardar</button>
+            <button id="cerrar" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button id="guardar" type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
         </div>
