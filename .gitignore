@@ -1,0 +1,12 @@
+*
+!/*
+!/node_modules
+!index.html
+!main.js
+!main.ts
+!.gitignore
+!main.css
+!bootstrap.css 
+!bootstrap-icons.css
+!bootstrap.bundle.js
+*.json

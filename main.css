@@ -1,0 +1,6 @@
+.favbutton{
+    position:fixed;
+    bottom: 10px;
+    left: calc(50% - 40px);
+    cursor: pointer;
+}
